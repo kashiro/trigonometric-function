@@ -1,0 +1,35 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+html,body{
+  background-color: #000;
+}
+
+.label{
+  color: #fff;
+}
+
+#form{
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: none;
+}
+
+#pointer{
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  border-radius: 10px;
+  cursor: move;
+  -khtml-user-drag: element;
+  -webkit-user-drag: element;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
