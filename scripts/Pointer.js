@@ -11,7 +11,6 @@
     this.callback = callback;
 
     this.bind();
-    this.update(center.x, center.y, this.offset);
   }
 
   Pointer.prototype.bind = function(){
@@ -20,16 +19,18 @@
     doc.addEventListener('mouseup', this.onMouseUp.bind(this), false);
   }
 
-  Pointer.prototype.update = function(x, y, offset){
+  Pointer.prototype.update = function(x, y){
     var $elm = this.$elm,
-        _offset = offset || 0,
+        offset = this.offset,
+        positionFromCenter = this.getPositionFromCenter(x, y),
         suffix = this.suffix;
 
     if(x === 0){
       return;
     }
-    $elm.style.left = x - _offset + suffix;
-    $elm.style.top = y - _offset + suffix;
+    this.callback({x:x,y:y}, positionFromCenter);
+    $elm.style.left = x - offset + suffix;
+    $elm.style.top = y - offset + suffix;
   };
 
   Pointer.prototype.onMouseDown = function(e){
@@ -41,21 +42,35 @@
   };
 
   Pointer.prototype.onMouseMove = function(e){
-    var positionFromCenter = {},
-        clientPosition = {x:e.clientX, y:e.clientY};
     if(this.isTracking){
-      positionFromCenter = this.getPositionFromCenter(e.clientX, e.clientY);
       this.update(e.clientX, e.clientY);
-      this.callback(clientPosition, positionFromCenter);
     }
     e.preventDefault();
   };
 
   Pointer.prototype.getPositionFromCenter = function(px, py){
-    var center = this.center;
+    /*
+     *           A
+     *           *
+     *          **
+     *         ***
+     *        ****
+     *       *****
+     *   B  ******  C
+     *
+     *   px,py are position of A
+     *   this function calculate AC BC and AB size.
+     */
+    var center = this.center,
+        ac = center.y - py,
+        bc = px - center.x,
+        // Pythagorean theorem
+        // Math.pow(ab,2) = Math.pow(ac,2) + Math.pow(bc,2)
+        ab = Math.sqrt(Math.pow(ac,2) + Math.pow(bc,2));
     return {
-      x : px - center.x,
-      y : center.y - py
+      r : ab, // radius
+      x : bc,
+      y : ac
     };
   };
 

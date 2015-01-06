@@ -18,25 +18,26 @@
 
     var arc = new Arc(ctx, center),
         stage = new Stage(ctx, wWidth, wHeight, center),
-        pointer = new Pointer(center, update.bind(this)),
-        triangle = new Triangle(ctx, center);
+        triangle = new Triangle(ctx, center),
+        pointer = new Pointer(center, update.bind(this));
 
     ///function updateAll(radius){
     ///  stage.init(ctx, wWidth, wHeight);
     ///  arc.update(radius, degree);
     ///  arc.draw();
     ///}
-    update();
+
+    pointer.update(center.x+200, center.y-200);
+
     function update(position, positionFromCenter){
 
       ctx.clearRect(0, 0, wWidth, wHeight);
-      stage.update(200);
+
+      stage.update(positionFromCenter.r);
       stage.draw();
 
-      if(position && positionFromCenter){
-        triangle.update(position.x, position.y, positionFromCenter.y);
-        triangle.draw();
-      }
+      triangle.update(position.x, position.y, positionFromCenter.y);
+      triangle.draw();
 
     }
 

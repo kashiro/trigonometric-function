@@ -4,10 +4,6 @@
 
   function Arc(ctx, center){
     this.center = center;
-    this.position = {
-      x : 0,
-      y : 0
-    };
     this.ctx = ctx;
   }
 
@@ -18,8 +14,9 @@
   };
 
   Arc.prototype.radian2degree = function(radian){
-    // degree = Math.PI / 180 / radian
-    return Math.PI / 180 / radian;
+    // Math.PI / 180 * degree = radian
+    // --> degree = radian * (Math.PI / 180)
+    return  radian * (Math.PI / 180);
   };
 
   Arc.prototype.getX = function(radius, radian){
@@ -33,14 +30,11 @@
   Arc.prototype.update = function(radius, degree){
     this.radian = this.degree2radian(degree);
     this.radius = radius;
-    this.position.x = this.getX(radius, this.radian);
-    this.position.y = this.getY(radius, this.radian);
   };
 
   Arc.prototype.draw = function(){
     var ctx = this.ctx,
-        center = this.center,
-        position = this.position;
+        center = this.center;
 
     this.ctx.strokeStyle = '#00FF00';
     ctx.lineWidth = 3;
