@@ -2,11 +2,8 @@
 
   'use strict';
 
-  function Arc(ctx){
-    this.center = {
-      x : Math.ceil(ctx.canvas.width / 2),
-      y : Math.ceil(ctx.canvas.height / 2)
-    };
+  function Arc(ctx, center){
+    this.center = center;
     this.position = {
       x : 0,
       y : 0
