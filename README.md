@@ -3,10 +3,18 @@
 
 You can check functions in `scripts/Trigonometric.js`
 
-* tangent2radian
-* degree2radian
-* radian2degree
-* getHypotenuse
-* getArcPoint 
+            A
+            *
+           **
+          ***
+         ****
+        *****
+    B  ******  C
+
+* tangent2radian(tangent, convertDegree))
+* degree2radian(degree)
+* radian2degree(radian)
+* getHypotenuse(ac, bc)
+* getArcPoint(radius, radian)
 
 And check [demo](http://kashiro.github.io/trigonometric-function/)
