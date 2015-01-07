@@ -64,9 +64,7 @@
     var center = this.center,
         ac = center.y - py,
         bc = px - center.x,
-        // Pythagorean theorem
-        // Math.pow(ab,2) = Math.pow(ac,2) + Math.pow(bc,2)
-        ab = Math.sqrt(Math.pow(ac,2) + Math.pow(bc,2));
+        ab = Trigonometric.getHypotenuse(ac, bc);
     return {
       r : ab, // radius
       x : bc,

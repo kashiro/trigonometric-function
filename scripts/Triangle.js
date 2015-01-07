@@ -31,8 +31,8 @@
     ctx.fillStyle = 'red';
     ctx.font = '20px sans-serif';
     ctx.fillText('A', this.x + 10, this.y - 10);
-    ctx.fillText('B', this.x + 10, this.y + this.length + 10);
-    ctx.fillText('C', center.x - 10, center.y - 10);
+    ctx.fillText('C', this.x + 10, this.y + this.length - 10);
+    ctx.fillText('B', center.x - 10, center.y - 10);
   };
 
   exports.Triangle = Triangle;

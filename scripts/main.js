@@ -21,23 +21,23 @@
         triangle = new Triangle(ctx, center),
         pointer = new Pointer(center, update.bind(this));
 
-    ///function updateAll(radius){
-    ///  stage.init(ctx, wWidth, wHeight);
-    ///  arc.update(radius, degree);
-    ///  arc.draw();
-    ///}
-
     pointer.update(center.x+200, center.y-200);
 
     function update(position, positionFromCenter){
 
       ctx.clearRect(0, 0, wWidth, wHeight);
 
+      // stage
       stage.update(positionFromCenter.r);
       stage.draw();
 
+      // triangle
       triangle.update(position.x, position.y, positionFromCenter.y);
       triangle.draw();
+
+      // arc
+      arc.update(positionFromCenter);
+      arc.draw();
 
     }
 
